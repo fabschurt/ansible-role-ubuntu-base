@@ -1,0 +1,7 @@
+---
+- name: Remove unneeded files and directories
+  tags: [cleaning]
+  file:
+    path: '{{ item }}'
+    state: absent
+  with_items: unneeded_paths

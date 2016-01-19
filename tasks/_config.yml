@@ -1,0 +1,32 @@
+---
+- name: Install some custom config files
+  tags: [config]
+  synchronize:
+    src: etc/
+    dest: /etc
+    archive: false
+    recursive: true
+    times: true
+    checksum: true
+  notify:
+    - Restart SSH server
+
+# This is a bit twisted, but there's no real other way to do that, because
+# shell wildcards don't include dotfiles by default
+- name: Set correct file permissions
+  tags: [config]
+  shell: "bash -O dotglob -c 'chmod -c {{ item.mode }} {{ item.path }}'"
+  with_items:
+    - { path: /etc/skel/*,          mode: '0600' }
+    - { path: /etc/update-motd.d/*, mode: '0755' }
+  register: chmod_result
+  changed_when: chmod_result.stdout != ''
+  args:
+    warn: false
+
+- name: Copy skeleton files to root's home
+  tags: [config]
+  copy:
+    src: etc/skel/
+    dest: /root
+    mode: 0600

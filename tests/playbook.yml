@@ -1,0 +1,4 @@
+---
+- hosts: testing
+  roles:
+    - { role: ansible-role-ubuntu-bootstrap }
