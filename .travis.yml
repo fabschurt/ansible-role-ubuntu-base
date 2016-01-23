@@ -19,6 +19,3 @@ before_script:
 
 script:
   - ansible-playbook tests/playbook.yml -i tests/hosts --syntax-check
-
-notifications:
-  webhooks: https://galaxy.ansible.com/api/v1/notifications/
