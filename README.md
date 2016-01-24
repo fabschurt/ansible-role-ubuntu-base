@@ -1,6 +1,6 @@
 # Ubuntu Base System
 
-[![Travis CI](https://img.shields.io/travis/rust-lang/rust.svg)](https://travis-ci.org/fabschurt/ansible-role-ubuntu-bootstrap)
+[![Travis CI](https://img.shields.io/travis/rust-lang/rust.svg)](https://travis-ci.org/fabschurt/ansible-role-ubuntu-base)
 
 This is a simple ’n’ easy Ansible role that can be used to set up a bare Ubuntu
 base system. It's really a boostrap role, so it's better if it's executed as
@@ -16,7 +16,7 @@ Basically, this role will (in order):
 You can use the `--tags` option of `ansible-playbook` to apply the role partially,
 using the tag names provided above.
 
-This role is continuously integrated on [Travis](https://travis-ci.org/fabschurt/ansible-role-ubuntu-bootstrap).
+This role is continuously integrated on [Travis](https://travis-ci.org/fabschurt/ansible-role-ubuntu-base).
 For now, it's simply syntax-checked against multiple Ansible versions, to check
 for basic compatibility.
 
@@ -52,7 +52,7 @@ The variable values used here reflect the default values declared in `defaults/m
 ```yaml
 - hosts: servers
   roles:
-    - role: ansible-role-ubuntu-bootstrap
+    - role: ansible-role-ubuntu-base
       needed_packages:
         - openssh-server
         - ntp
