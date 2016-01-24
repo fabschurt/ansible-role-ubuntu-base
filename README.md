@@ -38,7 +38,7 @@ This role is configurable with the following variables:
 * `unneeded_paths`: a collection of directory/file paths that have to be absent
   from the system (careful with that)
 * `postmaster_redirect_address`: an e-mail address where postmaster/root e-mails
-  will be sent
+  will be redirected to
 
 See the **Example playbook** section below for a reference of these variables'
 default values.
@@ -69,6 +69,8 @@ The variable values used here reflect the default values declared in `defaults/m
         - /etc/update-motd.d/91-release-upgrade
       postmaster_redirect_address: dev@null.net # You should really override this one
 ```
+
+*Note:* Postfix will be configured as send-only.
 
 ## License
 
