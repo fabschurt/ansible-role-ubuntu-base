@@ -39,5 +39,6 @@ alias grepr='grep -RHIin'
 export LESS='--chop-long-lines --hilite-search --jump-target=.5 --ignore-case --RAW-CONTROL-CHARS --tabs=2'
 export GREP_OPTIONS='--color=auto'
 
-# Set default secure umask
+# Set default secure umask (not mandatory since pam_umask normally takes care of
+# this, but you never know)
 umask 077
