@@ -1,25 +1,24 @@
 ---
-- name: Install some custom config files
+- name: Upload some custom config files
   tags: [config]
-  synchronize:
-    src: post_install/etc/
-    dest: /etc
-    checksum: true
-  notify:
-    - Restart SSH server
-
-# This is a bit twisted, but there's no real other way to do that, because
-# shell wildcards don't include dotfiles by default
-- name: Set correct file permissions
-  tags: [config]
-  shell: "bash -O dotglob -c 'chmod -c {{ item.mode }} {{ item.path }}'"
+  copy:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    mode: '{{ item.mode }}'
   with_items:
-    - { path: /etc/skel/*,          mode: '0600' }
-    - { path: /etc/update-motd.d/*, mode: '0755' }
-  register: chmod_result
-  changed_when: chmod_result.stdout != ''
-  args:
-    warn: false
+    - { src: post_install/etc/skel/.bash_logout, dest: /etc/skel/.bash_logout, mode: '0600' }
+    - { src: post_install/etc/skel/.bashrc, dest: /etc/skel/.bashrc, mode: '0600' }
+    - { src: post_install/etc/skel/.profile, dest: /etc/skel/.profile, mode: '0600' }
+    - { src: post_install/etc/profile, dest: /etc/profile, mode: '0644' }
+    - { src: post_install/etc/bash.bashrc, dest: /etc/bash.bashrc, mode: '0644' }
+    - { src: post_install/etc/login.defs, dest: /etc/login.defs, mode: '0644' }
+    - { src: post_install/etc/ssh/ssh_config, dest: /etc/ssh/ssh_config, mode: '0644' }
+    - { src: post_install/etc/ssh/sshd_config, dest: /etc/ssh/sshd_config, mode: '0644' }
+    - { src: post_install/etc/update-motd.d/00-header, dest: /etc/update-motd.d/00-header, mode: '0755' }
+    - { src: post_install/etc/update-motd.d/98-fsck-at-reboot, dest: /etc/update-motd.d/98-fsck-at-reboot, mode: '0755' }
+    - { src: post_install/etc/update-motd.d/98-reboot-required, dest: /etc/update-motd.d/98-reboot-required, mode: '0755' }
+    - { src: post_install/etc/adduser.conf, dest: /etc/adduser.conf, mode: '0644' }
+    - { src: post_install/etc/deluser.conf, dest: /etc/deluser.conf, mode: '0644' }
   notify:
     - Restart SSH
 
