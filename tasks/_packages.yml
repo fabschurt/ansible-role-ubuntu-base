@@ -6,8 +6,8 @@
     dest: /etc/apt/sources.list
     mode: 0644
 
-# This is not idempotent, but there's no real other choice for now, until the
-# `apt` module supports a `clean` operation
+# This is not an idempotent operation, but there's no real other choice for now,
+# until the `apt` module supports a `clean` option
 - name: Reset package tree
   tags: [packages]
   shell: apt-get clean; apt-get update
