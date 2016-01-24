@@ -23,7 +23,7 @@ ServerKeyBits 1024
 SyslogFacility AUTH
 LogLevel INFO
 
-# Authentication:
+# Authentication
 LoginGraceTime 60
 PermitRootLogin yes
 StrictModes yes
