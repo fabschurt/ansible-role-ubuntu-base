@@ -37,6 +37,6 @@
   with_items: needed_locales
 
 - name: Upgrade all packages
-  tags: [packages]
+  tags: [packages, slow]
   apt:
     upgrade: 'yes'
