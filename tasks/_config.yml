@@ -19,8 +19,6 @@
     - { src: post_install/etc/update-motd.d/98-reboot-required, dest: /etc/update-motd.d/98-reboot-required, mode: '0755' }
     - { src: post_install/etc/adduser.conf, dest: /etc/adduser.conf, mode: '0644' }
     - { src: post_install/etc/deluser.conf, dest: /etc/deluser.conf, mode: '0644' }
-  notify:
-    - Restart SSH
 
 - name: Copy skeleton files to root's home
   tags: [config]
