@@ -1,4 +1,11 @@
 ---
+- name: Upload custom APT source list (with backports disabled)
+  tags: [packages]
+  copy:
+    src: pre_install/etc/apt/sources.list
+    dest: /etc/apt/sources.list
+    mode: 0644
+
 # This is not idempotent, but there's no real other choice for now, until the
 # `apt` module supports a `clean` operation
 - name: Reset package tree

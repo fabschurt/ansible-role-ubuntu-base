@@ -2,11 +2,8 @@
 - name: Install some custom config files
   tags: [config]
   synchronize:
-    src: etc/
+    src: post_install/etc/
     dest: /etc
-    archive: false
-    recursive: true
-    times: true
     checksum: true
   notify:
     - Restart SSH server
@@ -27,6 +24,6 @@
 - name: Copy skeleton files to root's home
   tags: [config]
   copy:
-    src: etc/skel/
+    src: post_install/etc/skel/
     dest: /root
     mode: 0600
