@@ -20,6 +20,8 @@
   changed_when: chmod_result.stdout != ''
   args:
     warn: false
+  notify:
+    - Restart SSH
 
 - name: Copy skeleton files to root's home
   tags: [config]
