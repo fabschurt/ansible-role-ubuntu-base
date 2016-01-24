@@ -2,6 +2,3 @@
 - include: _packages.yml
 - include: _config.yml
 - include: _cleaning.yml
-
-- name: Final reboot
-  shell: reboot

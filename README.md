@@ -11,10 +11,11 @@ Basically, this role will (in order):
 * install, remove and upgrade packages (`packages` tag)
 * upload some custom config files (`config` tag)
 * do some cleanup (`cleaning` tag)
-* reboot the system
 
 You can use the `--tags` option of `ansible-playbook` to apply the role partially,
 using the tag names provided above.
+
+It's recommended that you reboot the targeted server(s) after applying this role.
 
 This role is continuously integrated on [Travis](https://travis-ci.org/fabschurt/ansible-role-ubuntu-base).
 For now, it's simply syntax-checked against multiple Ansible versions, to check
