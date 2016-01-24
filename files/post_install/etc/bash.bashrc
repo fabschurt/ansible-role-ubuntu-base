@@ -35,5 +35,9 @@ alias la='ls -lahpX --group-directories-first --color=auto'
 alias rm='rm -I --one-file-system --preserve-root'
 alias grepr='grep -RHIin'
 
+# Sensible defaults for some core utilities
+export LESS='--chop-long-lines --hilite-search --jump-target=.5 --ignore-case --RAW-CONTROL-CHARS --tabs=2'
+export GREP_OPTIONS='--color=auto'
+
 # Set default secure umask
 umask 077
