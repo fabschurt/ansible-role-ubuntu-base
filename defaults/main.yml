@@ -2,6 +2,7 @@
 needed_packages:
   - openssh-server
   - ntp
+  - postfix
 
 unneeded_packages:
   - bind9-host
@@ -15,3 +16,5 @@ unneeded_paths:
   - /etc/update-motd.d/50-landscape-sysinfo
   - /etc/update-motd.d/90-updates-available
   - /etc/update-motd.d/91-release-upgrade
+
+postmaster_redirect_address: dev@null.net

@@ -37,6 +37,8 @@ This role is configurable with the following variables:
 * `needed_locales`: a collection of locales that have to be present on the system
 * `unneeded_paths`: a collection of directory/file paths that have to be absent
   from the system (careful with that)
+* `postmaster_redirect_address`: an e-mail address where postmaster/root e-mails
+  will be sent
 
 See the **Example playbook** section below for a reference of these variables'
 default values.
@@ -54,6 +56,7 @@ The variable values used here reflect the default values declared in `defaults/m
       needed_packages:
         - openssh-server
         - ntp
+        - postfix
       unneeded_packages:
         - bind9-host
       needed_locales:
@@ -64,6 +67,7 @@ The variable values used here reflect the default values declared in `defaults/m
         - /etc/update-motd.d/50-landscape-sysinfo
         - /etc/update-motd.d/90-updates-available
         - /etc/update-motd.d/91-release-upgrade
+      postmaster_redirect_address: dev@null.net # You should really override this one
 ```
 
 ## License
