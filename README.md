@@ -2,8 +2,8 @@
 
 [![Travis CI](https://img.shields.io/travis/rust-lang/rust.svg)](https://travis-ci.org/fabschurt/ansible-role-ubuntu-base)
 
-This is a simple ’n’ easy Ansible role that can be used to set up a bare Ubuntu
-base system. It's really a boostrap role, so it's better if it's executed as
+This is a simple & easy Ansible role that can be used to set up a bare Ubuntu
+base system. It's really a bootstrap role, so it's better if it's executed as
 early as possible in your configuration/provisioning workflow.
 
 Basically, this role will (in order):
