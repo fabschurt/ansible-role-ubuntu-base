@@ -14,6 +14,9 @@ HISTCONTROL=ignoreboth
 HISTSIZE=200
 HISTFILESIZE=0
 
+# Disable less history
+export LESSHISTFILE=/dev/null
+
 # Check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS
 shopt -s checkwinsize
