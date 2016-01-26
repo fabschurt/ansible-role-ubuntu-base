@@ -29,7 +29,7 @@ user_color=2
 if [[ $(id -u) == 0 ]]; then
   user_color=1
 fi
-export PS1="\[$(tput setaf ${user_color})\]\[$(tput bold)\]\u\[$(tput sgr0)\]@\H:\[$(tput setaf 4)\]\[$(tput bold)\]\w\[$(tput sgr0)\]> "
+export PS1="\[$(tput setaf ${user_color})\]\[$(tput bold)\]\u\[$(tput sgr0)\]@\H:\[$(tput setaf 4)\]\[$(tput bold)\]\w\[$(tput sgr0)\]\\$ "
 
 # Some useful aliases
 alias la='ls -lahpX --group-directories-first --color=auto'
