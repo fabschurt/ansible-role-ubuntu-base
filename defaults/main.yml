@@ -3,6 +3,7 @@ needed_packages:
   - openssh-server
   - ntp
   - postfix
+  - colordiff
 
 unneeded_packages:
   - bind9-host
