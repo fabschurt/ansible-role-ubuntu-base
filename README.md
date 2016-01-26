@@ -10,7 +10,6 @@ Basically, this role will (in order):
 
 * install, remove and upgrade packages (`packages` tag)
 * upload some custom config files (`config` tag)
-* do some cleanup (`cleaning` tag)
 
 You can use the `--tags` option of `ansible-playbook` to apply the role partially,
 using the tag names provided above.
@@ -20,7 +19,6 @@ It's recommended that you reboot the targeted server(s) after applying this role
 Some non-exhaustive notes about the changes that will be made:
 
 * backports will be disabled in APT
-* an epic login `motd` will be installed
 * by default, command history won't be dumped to `.bash_history`, which will
   always be empty
 * a default `umask` value of `077` will be set in (hopefully) all shell modes
@@ -45,8 +43,6 @@ This role is configurable with the following variables:
 * `needed_packages`: a collection of packages that have to be present on the system
 * `unneeded_packages`: a collection of packages that have to be absent from the system
 * `needed_locales`: a collection of locales that have to be present on the system
-* `unneeded_paths`: a collection of directory/file paths that have to be absent
-  from the system (careful with that)
 * `postmaster_redirect_address`: an e-mail address where postmaster/root e-mails
   will be redirected to
 
@@ -72,11 +68,6 @@ The variable values used here reflect the default values declared in `defaults/m
       needed_locales:
         - en_US.UTF-8
         - fr_FR.UTF-8
-      unneeded_paths:
-        - /etc/update-motd.d/10-help-text
-        - /etc/update-motd.d/50-landscape-sysinfo
-        - /etc/update-motd.d/90-updates-available
-        - /etc/update-motd.d/91-release-upgrade
       postmaster_redirect_address: dev@null.net # You should really override this one
 ```
 

@@ -1,4 +1,3 @@
 ---
 - include: _packages.yml
 - include: _config.yml
-- include: _cleaning.yml

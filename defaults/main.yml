@@ -11,10 +11,4 @@ needed_locales:
   - en_US.UTF-8
   - fr_FR.UTF-8
 
-unneeded_paths:
-  - /etc/update-motd.d/10-help-text
-  - /etc/update-motd.d/50-landscape-sysinfo
-  - /etc/update-motd.d/90-updates-available
-  - /etc/update-motd.d/91-release-upgrade
-
 postmaster_redirect_address: dev@null.net
