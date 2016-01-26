@@ -32,15 +32,9 @@ fi
 export PS1="\[$(tput setaf ${user_color})\]\[$(tput bold)\]\u\[$(tput sgr0)\]@\H:\[$(tput setaf 4)\]\[$(tput bold)\]\w\[$(tput sgr0)\]> "
 
 # Some useful aliases
-alias sudo='sudo '
-alias supersaiyan='sudo -i -u root'
 alias la='ls -lahpX --group-directories-first --color=auto'
 alias rm='rm -I --one-file-system --preserve-root'
 alias grepr='grep -RHIin'
-
-# Sensible defaults for some core utilities
-export LESS='--chop-long-lines --hilite-search --jump-target=.5 --ignore-case --RAW-CONTROL-CHARS --tabs=2'
-export GREP_OPTIONS='--color=auto'
 
 # Set default secure umask (not mandatory since pam_umask normally takes care of
 # this, but you never know)
