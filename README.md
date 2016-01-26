@@ -12,7 +12,8 @@ Basically, this role will (in order):
 * upload some custom config files (`config` tag)
 
 You can use the `--tags` option of `ansible-playbook` to apply the role partially,
-using the tag names provided above.
+using the tag names provided above. You can also use `--skip-tags=slow` to skip
+slow actions, like the APT package upgrade.
 
 It's recommended that you reboot the targeted server(s) after applying this role.
 
