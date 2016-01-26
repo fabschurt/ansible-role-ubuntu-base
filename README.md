@@ -1,4 +1,4 @@
-# Ubuntu Base System
+# Ubuntu Base System (14.04)
 
 [![Travis CI](https://img.shields.io/travis/rust-lang/rust.svg)](https://travis-ci.org/fabschurt/ansible-role-ubuntu-base)
 
