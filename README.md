@@ -6,6 +6,10 @@ This is a simple & easy Ansible role that can be used to set up a bare Ubuntu
 base system. It's really a bootstrap role, so it's better if it's executed as
 early as possible in your configuration/provisioning workflow.
 
+Full compatibility has been tested on **Ubuntu 14.04** only, as it's the distrib
+I use for pretty much everything, but I guess this should work fine on later
+versions too, and on not-too-old earlier versions.
+
 Basically, this role will (in order):
 
 * install, remove and upgrade packages (`packages` tag)
@@ -28,9 +32,6 @@ Some non-exhaustive notes about the changes that will be made:
 This role is continuously integrated on [Travis](https://travis-ci.org/fabschurt/ansible-role-ubuntu-base).
 For now, it's simply syntax-checked against multiple Ansible versions, to check
 for basic compatibility.
-
-It's been tested against **Ubuntu 14.04**, but should work on earlier and later
-versions, as there's nothing really 14.04-specific in there.
 
 ## Requirements
 
