@@ -29,10 +29,6 @@ Some non-exhaustive notes about the changes that will be made:
 * a default `umask` value of `077` will be set in (hopefully) all shell modes
 * Postfix will be configured as *send-only*, and *IPv4-only*
 
-This role is continuously integrated on [Travis](https://travis-ci.org/fabschurt/ansible-role-ubuntu-base).
-For now, it's simply syntax-checked against multiple Ansible versions, to check
-for basic compatibility.
-
 ## Requirements
 
 * Ubuntu remote host(s) with root access
