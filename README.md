@@ -6,9 +6,8 @@ This is a simple & easy Ansible role that can be used to set up a bare Ubuntu
 base system. It's really a bootstrap role, so it's better if it's executed as
 early as possible in your configuration/provisioning workflow.
 
-Full compatibility has been tested on **Ubuntu 14.04** only, as it's the distrib
-I use for pretty much everything, but I guess this should work fine on later
-versions too, and on not-too-old earlier versions.
+Full compatibility has been tested on **Ubuntu 14.04**, but I guess it should
+work fine with later and (not too old) earlier versions too.
 
 Basically, this role will (in order):
 
