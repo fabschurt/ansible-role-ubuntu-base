@@ -6,13 +6,11 @@
     dest: /etc/apt/sources.list
     mode: 0644
 
-# This is not an idempotent operation, but there's no real other choice for now,
-# until the `apt` module supports a `clean` option
-- name: Reset package tree
-  tags: [packages]
-  shell: apt-get clean && apt-get update
-  args:
-    warn: false
+- name: Upgrade all packages
+  tags: [packages, slow]
+  apt:
+    update_cache: true
+    upgrade: safe
 
 - name: Install needed packages
   tags: [packages]
@@ -29,14 +27,15 @@
     purge: true
   with_items: ubuntu_base_unneeded_packages
 
+- name: Clean the mess up a bit
+  tags: [packages]
+  shell: apt-get autoremove && apt-get autoclean
+  args:
+    warn: false
+
 - name: Generate needed locales
   tags: [packages]
   locale_gen:
     name: '{{ item }}'
     state: present
   with_items: ubuntu_base_needed_locales
-
-- name: Upgrade all packages
-  tags: [packages, slow]
-  apt:
-    upgrade: 'yes'
