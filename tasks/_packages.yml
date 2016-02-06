@@ -10,7 +10,7 @@
 # until the `apt` module supports a `clean` option
 - name: Reset package tree
   tags: [packages]
-  shell: apt-get clean; apt-get update
+  shell: apt-get clean && apt-get update
   args:
     warn: false
 
