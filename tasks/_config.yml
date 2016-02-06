@@ -1,5 +1,5 @@
 ---
-- name: Upload some custom config files
+- name: Upload custom config files
   tags: [config]
   copy:
     src: '{{ item }}'
@@ -14,7 +14,7 @@
     - etc/adduser.conf
     - etc/deluser.conf
 
-- name: Upload some custom config templates
+- name: Upload custom config templates
   tags: [config]
   template:
     src: '{{ item }}'
