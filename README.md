@@ -11,8 +11,9 @@ work fine with later and (not too old) earlier versions too.
 
 Basically, this role will (in order):
 
-* install, remove and upgrade packages (`packages` tag)
+* install, remove and upgrade some packages (`packages` tag)
 * upload some custom config files (`config` tag)
+* upload default skeleton files and copy them in root's home (`skel` tag)
 
 You can use the `--tags` option of `ansible-playbook` to apply the role partially,
 using the tag names provided above. You can also use `--skip-tags=slow` to skip
@@ -23,10 +24,10 @@ It's recommended that you reboot the targeted server(s) after applying this role
 Some non-exhaustive notes about the changes that will be made:
 
 * backports will be disabled in APT
-* by default, command history won't be dumped to `.bash_history`, which will
-  always be empty
-* a default `umask` value of `077` will be set in (hopefully) all shell modes
-* Postfix will be configured as *send-only*, and *IPv4-only*
+* by default, user command history won't be dumped to `.bash_history`, which
+  will always be empty
+* a default `umask` value of `077` will be set for (hopefully) all shell modes
+* Postfix will be configured as *send-only*
 
 ## Requirements
 
@@ -37,11 +38,16 @@ Some non-exhaustive notes about the changes that will be made:
 
 This role is configurable with the following variables:
 
-* `needed_packages`: a collection of packages that have to be present on the system
-* `unneeded_packages`: a collection of packages that have to be absent from the system
-* `needed_locales`: a collection of locales that have to be present on the system
-* `postmaster_redirect_address`: an e-mail address where postmaster/root e-mails
-  will be redirected to
+* `ubuntu_base_needed_packages`: a collection of packages that have to be
+  present on the system
+* `ubuntu_base_unneeded_packages`: a collection of packages that have to be
+  absent from the system
+* `ubuntu_base_needed_locales`: a collection of locales that have to be present
+  on the system
+* `ubuntu_base_postmaster_redirect_address`: an e-mail address where postmaster/root
+  e-mails will be redirected to
+* `ubuntu_base_ntp_listening_interface`: the name of the network interface
+  that `ntp` will listen to for external communication
 
 See the **Example playbook** section below for a reference of these variables'
 default values.
@@ -55,17 +61,19 @@ The variable values used here reflect the default values declared in `defaults/m
 ```yaml
 - hosts: servers
   roles:
-    - role: ansible-role-ubuntu-base
-      needed_packages:
+    - role: fabschurt.ubuntu-base
+      ubuntu_base_needed_packages:
         - openssh-server
         - ntp
         - postfix
-      unneeded_packages:
+        - colordiff
+      ubuntu_base_unneeded_packages:
         - bind9-host
-      needed_locales:
+      ubuntu_base_needed_locales:
         - en_US.UTF-8
         - fr_FR.UTF-8
-      postmaster_redirect_address: dev@null.net # You should really override this one
+      ubuntu_base_postmaster_redirect_address: dev@null.net # You should really override this one
+      ubuntu_base_ntp_listening_interface: eth1
 ```
 
 ## License
