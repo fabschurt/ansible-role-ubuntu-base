@@ -1,4 +1,9 @@
 ---
+- name: Restart NTP
+  service:
+    name: ntp
+    state: restarted
+
 - name: Restart Postfix
   service:
     name: postfix
