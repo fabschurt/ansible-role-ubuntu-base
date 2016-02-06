@@ -1,0 +1,2 @@
+---
+ubuntu_base_skel_filenames: "{{ lookup('fileglob', 'etc/skel/.*').split(',')|map('basename')|list }}"

@@ -1,15 +1,15 @@
 ---
-needed_packages:
+ubuntu_base_needed_packages:
   - openssh-server
   - ntp
   - postfix
   - colordiff
 
-unneeded_packages:
+ubuntu_base_unneeded_packages:
   - bind9-host
 
-needed_locales:
+ubuntu_base_needed_locales:
   - en_US.UTF-8
   - fr_FR.UTF-8
 
-postmaster_redirect_address: dev@null.net
+ubuntu_base_postmaster_redirect_address: dev@null.net

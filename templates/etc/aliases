@@ -1,3 +1,3 @@
 # See man 5 aliases for format
 postmaster: root
-root: {{ postmaster_redirect_address }}
+root: {{ ubuntu_base_postmaster_redirect_address }}

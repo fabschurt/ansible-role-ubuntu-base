@@ -2,7 +2,7 @@
 - name: Upload custom APT source list (with backports disabled)
   tags: [packages]
   copy:
-    src: pre_install/etc/apt/sources.list
+    src: etc/apt/sources.list
     dest: /etc/apt/sources.list
     mode: 0644
 
@@ -19,7 +19,7 @@
   apt:
     name: '{{ item }}'
     state: present
-  with_items: needed_packages
+  with_items: ubuntu_base_needed_packages
 
 - name: Remove unneeded packages
   tags: [packages]
@@ -27,14 +27,14 @@
     name: '{{ item }}'
     state: absent
     purge: true
-  with_items: unneeded_packages
+  with_items: ubuntu_base_unneeded_packages
 
 - name: Generate needed locales
   tags: [packages]
   locale_gen:
     name: '{{ item }}'
     state: present
-  with_items: needed_locales
+  with_items: ubuntu_base_needed_locales
 
 - name: Upgrade all packages
   tags: [packages, slow]

@@ -2,39 +2,28 @@
 - name: Upload some custom config files
   tags: [config]
   copy:
-    src: '{{ item.src }}'
-    dest: '{{ item.dest }}'
-    mode: '{{ item.mode }}'
+    src: '{{ item }}'
+    dest: '/{{ item }}'
+    mode: 0644
   with_items:
-    - { src: post_install/etc/skel/.bash_logout, dest: /etc/skel/.bash_logout, mode: '0600' }
-    - { src: post_install/etc/skel/.bashrc, dest: /etc/skel/.bashrc, mode: '0600' }
-    - { src: post_install/etc/skel/.profile, dest: /etc/skel/.profile, mode: '0600' }
-    - { src: post_install/etc/profile, dest: /etc/profile, mode: '0644' }
-    - { src: post_install/etc/bash.bashrc, dest: /etc/bash.bashrc, mode: '0644' }
-    - { src: post_install/etc/login.defs, dest: /etc/login.defs, mode: '0644' }
-    - { src: post_install/etc/ssh/ssh_config, dest: /etc/ssh/ssh_config, mode: '0644' }
-    - { src: post_install/etc/pam.d/common-session, dest: /etc/pam.d/common-session, mode: '0644' }
-    - { src: post_install/etc/pam.d/common-session-noninteractive, dest: /etc/pam.d/common-session-noninteractive, mode: '0644' }
-    - { src: post_install/etc/adduser.conf, dest: /etc/adduser.conf, mode: '0644' }
-    - { src: post_install/etc/deluser.conf, dest: /etc/deluser.conf, mode: '0644' }
-
-- name: Copy skeleton files to root's home
-  tags: [config]
-  copy:
-    src: post_install/etc/skel/
-    dest: /root
-    mode: 0600
+    - etc/ssh/
+    - etc/pam.d/
+    - etc/profile
+    - etc/bash.bashrc
+    - etc/login.defs
+    - etc/adduser.conf
+    - etc/deluser.conf
 
 - name: Upload some custom config templates
   tags: [config]
   template:
-    src: '{{ item.src }}'
-    dest: '{{ item.dest }}'
-    mode: '{{ item.mode }}'
+    src: '{{ item }}'
+    dest: '/{{ item }}'
+    mode: 0644
   with_items:
-    - { src: post_install/etc/postfix/main.cf, dest: /etc/postfix/main.cf, mode: '0644' }
-    - { src: post_install/etc/aliases, dest: /etc/aliases, mode: '0644' }
-    - { src: post_install/etc/mailname, dest: /etc/mailname, mode: '0644' }
+    - etc/mailname
+    - etc/postfix/main.cf
+    - etc/aliases
   notify:
-    - Register new aliases
     - Restart Postfix
+    - Register new aliases
