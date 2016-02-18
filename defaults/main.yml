@@ -4,11 +4,9 @@ ubuntu_base_needed_packages:
   - ntp
   - postfix
   - colordiff
-
 ubuntu_base_unneeded_packages:
   - bind9-host
   - ufw
-
 ubuntu_base_needed_locales:
   - en_US.UTF-8
   - fr_FR.UTF-8
