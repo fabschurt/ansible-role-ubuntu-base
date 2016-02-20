@@ -26,7 +26,8 @@ Some non-exhaustive notes about the changes that will be made:
 * backports will be disabled in APT
 * by default, user command history won't be dumped to `.bash_history`, which
   will always be empty
-* a default `umask` value of `077` will be set for (hopefully) all shell modes
+* a default `umask` value of `077` will be set for (hopefully) all the existing
+  shell modes
 * Postfix will be configured as *send-only*
 
 ## Requirements
@@ -47,7 +48,7 @@ This role is configurable with the following variables:
 * `ubuntu_base_postmaster_redirect_address`: an e-mail address where postmaster/root
   e-mails will be redirected to
 * `ubuntu_base_ntp_listening_interface`: the name of the network interface
-  that `ntp` will listen to for external communication
+  that `ntpd` will listen to for external communication
 
 See the **Example playbook** section below for a reference of these variables'
 default values.
@@ -69,11 +70,12 @@ The variable values used here reflect the default values declared in `defaults/m
         - colordiff
       ubuntu_base_unneeded_packages:
         - bind9-host
+        - ufw
       ubuntu_base_needed_locales:
         - en_US.UTF-8
         - fr_FR.UTF-8
       ubuntu_base_postmaster_redirect_address: dev@null.net # You should really override this one
-      ubuntu_base_ntp_listening_interface: eth1
+      ubuntu_base_ntp_listening_interface: eth0
 ```
 
 ## License
