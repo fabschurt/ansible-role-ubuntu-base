@@ -9,19 +9,7 @@ early as possible in your configuration/provisioning workflow.
 Full compatibility has been tested on **Ubuntu 14.04**, but I guess it should
 work fine with later and (not too old) earlier versions too.
 
-Basically, this role will (in order):
-
-* install, remove and upgrade some packages (`packages` tag)
-* upload some custom config files (`config` tag)
-* upload default skeleton files and copy them in root's home (`skel` tag)
-
-You can use the `--tags` option of `ansible-playbook` to apply the role partially,
-using the tag names provided above. You can also use `--skip-tags=slow` to skip
-slow actions, like the APT package upgrade.
-
-It's recommended that you reboot the targeted server(s) after applying this role.
-
-Some non-exhaustive notes about the changes that will be made:
+Here's a (non-exhaustive) list of the changes that will be made:
 
 * backports will be disabled in APT
 * by default, user command history won't be dumped to `.bash_history`, which
@@ -29,6 +17,8 @@ Some non-exhaustive notes about the changes that will be made:
 * a default `umask` value of `077` will be set for (hopefully) all the existing
   shell modes
 * Postfix will be configured as *send-only*
+
+It's recommended that you reboot the target host(s) after applying this role.
 
 ## Requirements
 
