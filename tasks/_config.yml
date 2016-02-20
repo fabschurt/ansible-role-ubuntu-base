@@ -29,3 +29,11 @@
     - Restart NTP
     - Restart Postfix
     - Register new aliases
+
+- name: Ensure host name has a match in hosts file
+  tags: [config]
+  lineinfile:
+    line: '127.0.1.1 {{ ansible_fqdn }}'
+    state: present
+    dest: /etc/hosts
+    insertbefore: BOF
