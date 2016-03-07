@@ -57,6 +57,10 @@ The variable values used here reflect the default values declared in `defaults/m
         - openssh-server
         - ntp
         - postfix
+        - git
+        - vim
+        - bash-completion
+        - screen
         - colordiff
       ubuntu_base_unneeded_packages:
         - bind9-host
