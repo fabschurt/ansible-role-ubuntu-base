@@ -57,6 +57,7 @@ The variable values used here reflect the default values declared in `defaults/m
         - openssh-server
         - ntp
         - postfix
+        - mailutils
         - git
         - vim
         - bash-completion

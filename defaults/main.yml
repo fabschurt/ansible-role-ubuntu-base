@@ -3,6 +3,7 @@ ubuntu_base_needed_packages:
   - openssh-server
   - ntp
   - postfix
+  - mailutils
   - git
   - vim
   - bash-completion
