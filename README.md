@@ -75,4 +75,4 @@ The variable values used here reflect the default values declared in `defaults/m
 
 ## License
 
-This package is licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This package is licensed under the [MIT License](https://opensource.org/licenses/MIT).
