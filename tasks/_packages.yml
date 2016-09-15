@@ -10,7 +10,7 @@
   tags: [packages, slow]
   apt:
     update_cache: true
-    upgrade: safe
+    upgrade: dist
 
 - name: Install needed packages
   tags: [packages]
