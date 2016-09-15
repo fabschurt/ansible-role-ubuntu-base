@@ -2,7 +2,7 @@
 - name: Register needed locales
   tags: [locales]
   lineinfile:
-    regexp: '^#\s*{{ item }}(\s+[A-Za-z\d\-]+)?$'
+    regexp: '^#\s*{{ item|regex_escape }}(\s+[A-Za-z\d\-]+)?$'
     backrefs: true
     line: '{{ item }}\1'
     state: present
