@@ -20,5 +20,5 @@
   file:
     state: absent
     path: '{{ item }}'
-  with_items: "remote_skel_files.files|map(attribute='path')|list"
+  with_items: "{{ remote_skel_files.files|map(attribute='path')|list }}"
   when: item|basename not in ubuntu_base_skel_filenames
