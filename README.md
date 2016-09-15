@@ -1,24 +1,22 @@
-# Ubuntu Base System (14.04)
+# Ubuntu Base System (16.04)
 
 [![Travis CI](https://img.shields.io/travis/fabschurt/ansible-role-ubuntu-base.svg)](https://travis-ci.org/fabschurt/ansible-role-ubuntu-base)
 
-This is a simple 'n' easy Ansible role that can be used to set up a bare Ubuntu
-base system. It's really a bootstrap role, so it's better if it's executed as
+This is a simple ’n’ easy Ansible role that can be used to set up a bare Ubuntu
+base system. It’s really a bootstrap role, so it’s better if it’s executed as
 early as possible in your configuration/provisioning workflow.
 
-Full compatibility has been tested on **Ubuntu 14.04**, but I guess it should
-work fine with later and (not too old) earlier versions too.
+Full compatibility has been tested on **Ubuntu 16.04** only.
 
-Here's a (non-exhaustive) list of the changes that will be made:
+Here’s a (non-exhaustive) list of the changes that will be made&nbsp;:
 
 * backports will be disabled in APT
-* by default, user command history won't be dumped to `.bash_history`, which
+* by default, user command history won’t be dumped to `.bash_history`, which
   will always be empty
 * a default `umask` value of `077` will be set for (hopefully) all the existing
   shell modes
 * Postfix will be configured as *send-only*
-
-It's recommended that you reboot the target host(s) after applying this role.
+* the target host(s) will be rebooted
 
 ## Requirements
 
@@ -27,7 +25,7 @@ It's recommended that you reboot the target host(s) after applying this role.
 
 ## Role variables
 
-This role is configurable with the following variables:
+This role is configurable with the following variables&nbsp;:
 
 * `ubuntu_base_needed_packages`: a collection of packages that have to be
   present on the system
@@ -40,14 +38,14 @@ This role is configurable with the following variables:
 * `ubuntu_base_ntp_listening_interface`: the name of the network interface
   that `ntpd` will listen to for external communication
 
-See the **Example playbook** section below for a reference of these variables'
+See the **Example playbook** section below for a reference of these variables’
 default values.
 
 ## Example playbook
 
 This is an example playbook that demonstrates how you would use the role, provided
-that you've [installed](https://galaxy.ansible.com/intro#download) it already.
-The variable values used here reflect the default values declared in `defaults/main.yml`:
+that you’ve [installed](https://galaxy.ansible.com/intro#download) it already.
+The variable values used here reflect the default values declared in `defaults/main.yml`&nbsp;:
 
 ```yaml
 - hosts: servers
