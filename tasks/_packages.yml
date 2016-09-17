@@ -7,7 +7,7 @@
     mode: 0644
 
 - name: Upgrade all packages
-  tags: [packages, slow]
+  tags: [packages]
   apt:
     update_cache: true
     upgrade: dist
