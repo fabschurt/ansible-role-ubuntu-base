@@ -11,3 +11,9 @@
 
 - name: Register new aliases
   shell: newaliases
+
+- name: Generate locales
+  locale_gen:
+    name: '{{ item }}'
+    state: present
+  with_items: '{{ ubuntu_base_needed_locales }}'

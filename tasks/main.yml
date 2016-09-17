@@ -1,5 +1,4 @@
 ---
 - include: _packages.yml
-- include: _locales.yml
 - include: _config.yml
 - include: _skel.yml
