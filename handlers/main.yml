@@ -10,7 +10,7 @@
     state: restarted
 
 - name: Register new aliases
-  shell: newaliases
+  shell: 'newaliases'
 
 - name: Generate locales
   locale_gen:
