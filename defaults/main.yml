@@ -1,5 +1,5 @@
 ---
-ubuntu_base_apt_mirror: fr.archive.ubuntu.com
+ubuntu_base_deb_repo_domain: fr.archive.ubuntu.com
 ubuntu_base_needed_packages:
   - openssh-server
   - ntp
