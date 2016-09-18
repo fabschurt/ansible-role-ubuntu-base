@@ -17,4 +17,3 @@ ubuntu_base_needed_locales:
   - en_US.UTF-8
   - fr_FR.UTF-8
 ubuntu_base_postmaster_redirect_address: dev@null.net
-ubuntu_base_ntp_listening_interface: eth0

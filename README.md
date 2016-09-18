@@ -36,8 +36,6 @@ This role is configurable with the following variables&nbsp;:
   on the system
 * `ubuntu_base_postmaster_redirect_address`: an e-mail address where postmaster/root
   e-mails will be redirected to
-* `ubuntu_base_ntp_listening_interface`: the name of the network interface
-  that `ntpd` will listen to for external communication
 
 See the **Example playbook** section below for a reference of these variables’
 default values.
@@ -70,7 +68,6 @@ The variable values used here reflect the default values declared in `defaults/m
         - en_US.UTF-8
         - fr_FR.UTF-8
       ubuntu_base_postmaster_redirect_address: dev@null.net # You should really override this one
-      ubuntu_base_ntp_listening_interface: eth0
 ```
 
 ## License
