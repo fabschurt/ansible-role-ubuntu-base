@@ -16,7 +16,6 @@ Here’s a (non-exhaustive) list of the changes that will be made&nbsp;:
 * a default `umask` value of `077` will be set for (hopefully) all the existing
   shell modes
 * Postfix will be configured as *send-only*
-* the target host(s) will be rebooted
 
 ## Requirements
 
@@ -27,6 +26,8 @@ Here’s a (non-exhaustive) list of the changes that will be made&nbsp;:
 
 This role is configurable with the following variables&nbsp;:
 
+* `ubuntu_base_deb_repo_domain`: the domain name of the main repository used by
+  APT
 * `ubuntu_base_needed_packages`: a collection of packages that have to be
   present on the system
 * `ubuntu_base_unneeded_packages`: a collection of packages that have to be
@@ -51,6 +52,7 @@ The variable values used here reflect the default values declared in `defaults/m
 - hosts: servers
   roles:
     - role: fabschurt.ubuntu-base
+      ubuntu_base_deb_repo_domain: fr.archive.ubuntu.com
       ubuntu_base_needed_packages:
         - openssh-server
         - ntp
