@@ -1,5 +1,35 @@
 ---
-- name: Upload custom config files
+- name: Upload NTP config file
+  tags: [config]
+  template:
+    src: etc/ntp.conf
+    dest: /etc/ntp.conf
+    mode: 0644
+  notify:
+    - Restart NTP
+
+- name: Upload Postfix config files
+  tags: [config]
+  template:
+    src: '{{ item }}'
+    dest: '/{{ item }}'
+    mode: 0644
+  with_items:
+    - etc/mailname
+    - etc/postfix/main.cf
+  notify:
+    - Restart Postfix
+
+- name: Redirect postmaster and root e-mails to custom address
+  tags: [config]
+  template:
+    src: etc/aliases
+    dest: /etc/aliases
+    mode: 0644
+  notify:
+    - Register new aliases
+
+- name: Upload miscellaneous config files
   tags: [config]
   copy:
     src: '{{ item }}'
@@ -13,22 +43,6 @@
     - etc/login.defs
     - etc/adduser.conf
     - etc/deluser.conf
-
-- name: Upload custom config templates
-  tags: [config]
-  template:
-    src: '{{ item }}'
-    dest: '/{{ item }}'
-    mode: 0644
-  with_items:
-    - etc/ntp.conf
-    - etc/mailname
-    - etc/postfix/main.cf
-    - etc/aliases
-  notify:
-    - Restart NTP
-    - Restart Postfix
-    - Register new aliases
 
 - name: Register needed locales
   tags: [config]
