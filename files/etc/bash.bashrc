@@ -39,7 +39,7 @@ export PS1="\[$(tput setaf ${user_color})\]\[$(tput bold)\]\u\[$(tput sgr0)\]@\H
 # Some useful aliases
 alias la='ls -lahpX --group-directories-first --color=auto'
 alias rm='rm -I --one-file-system --preserve-root'
-alias grepr='grep -RHIin'
+alias grepr='grep -RHIn'
 
 # Set default secure umask (not mandatory since pam_umask normally takes care of
 # this, but you never know)
