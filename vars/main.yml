@@ -1,2 +1,18 @@
 ---
 ubuntu_base_skel_filenames: "{{ lookup('fileglob', 'etc/skel/.*').split(',')|map('basename')|list }}"
+ubuntu_base_needed_packages:
+  - openssh-server
+  - ntp
+  - postfix
+  - mailutils
+  - git
+  - vim
+  - bash-completion
+  - screen
+  - colordiff
+ubuntu_base_unneeded_packages:
+  - bind9-host
+  - ufw
+ubuntu_base_needed_locales:
+  - en_US.UTF-8
+  - fr_FR.UTF-8
