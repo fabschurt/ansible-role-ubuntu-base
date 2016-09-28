@@ -20,7 +20,7 @@ Here’s a (non-exhaustive) list of the changes that will be made&nbsp;:
 ## Requirements
 
 * Ubuntu remote host(s) with root access
-* Ansible >= 2.0
+* Ansible >= 2.1
 
 ## Role variables
 
