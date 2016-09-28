@@ -6,6 +6,15 @@
     dest: /etc/apt/sources.list
     mode: 0644
 
+- name: Remove unneeded packages
+  tags: [packages]
+  apt:
+    name: '{{ item }}'
+    state: absent
+    purge: true
+    autoremove: true
+  with_items: '{{ ubuntu_base_unneeded_packages + ubuntu_base_additional_unneeded_packages }}'
+
 - name: Upgrade all packages
   tags: [packages]
   apt:
@@ -18,12 +27,3 @@
     name: '{{ item }}'
     state: present
   with_items: '{{ ubuntu_base_needed_packages + ubuntu_base_additional_needed_packages }}'
-
-- name: Remove unneeded packages
-  tags: [packages]
-  apt:
-    name: '{{ item }}'
-    state: absent
-    purge: true
-    autoremove: true
-  with_items: '{{ ubuntu_base_unneeded_packages + ubuntu_base_additional_unneeded_packages }}'
