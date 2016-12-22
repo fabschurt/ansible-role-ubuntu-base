@@ -6,6 +6,11 @@
     dest: /etc/apt/sources.list
     mode: 0644
 
+- name: Update package cache
+  tags: [packages]
+  apt:
+    update_cache: true
+
 - name: Remove unneeded packages
   tags: [packages]
   apt:
@@ -18,7 +23,6 @@
 - name: Upgrade all packages
   tags: [packages]
   apt:
-    update_cache: true
     upgrade: dist
 
 - name: Install needed packages
