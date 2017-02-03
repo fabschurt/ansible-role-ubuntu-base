@@ -29,5 +29,5 @@
   tags: [packages]
   apt:
     name: '{{ item }}'
-    state: present
+    state: latest
   with_items: '{{ ubuntu_base_needed_packages + ubuntu_base_additional_needed_packages }}'
