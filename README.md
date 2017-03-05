@@ -6,7 +6,8 @@ This is a simple ’n’ easy Ansible role that can be used to set up a bare Ubu
 base system. It’s really a bootstrap role, so it’s better if it’s executed as
 early as possible in your configuration/provisioning workflow.
 
-Full compatibility has been tested on **Ubuntu 16.04** only.
+This role is targeted at **Ubuntu 16.04**, but I guess it should work on any
+recent Ubuntu flavor.
 
 Here’s a (non-exhaustive) list of the changes that will be made&nbsp;:
 
