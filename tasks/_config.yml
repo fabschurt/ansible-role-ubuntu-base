@@ -44,12 +44,6 @@
     - etc/adduser.conf
     - etc/deluser.conf
 
-- name: Check if locale directory exists
-  tags: [config]
-  stat:
-    path: /etc/locale.gen
-  register: locale_dir_stat
-
 - name: Register needed locales
   tags: [config]
   lineinfile:
@@ -58,7 +52,7 @@
     line: '{{ item }}\1'
     state: present
     dest: /etc/locale.gen
+    create: true
   with_items: '{{ ubuntu_base_needed_locales + ubuntu_base_additional_needed_locales }}'
   notify:
     - Generate locales
-  when: locale_dir_stat.stat.exists
