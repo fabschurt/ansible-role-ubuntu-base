@@ -21,7 +21,7 @@
   with_items: '{{ ubuntu_base_unneeded_packages + ubuntu_base_additional_unneeded_packages }}'
 
 - name: Upgrade all packages
-  tags: [packages]
+  tags: [packages, slow]
   apt:
     upgrade: dist
 
