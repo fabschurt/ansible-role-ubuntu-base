@@ -1,6 +1,7 @@
 ---
 ubuntu_base_skel_filenames: "{{ lookup('fileglob', 'etc/skel/.*').split(',')|map('basename')|list }}"
 ubuntu_base_needed_packages:
+  - openssh-server
   - ntp
   - postfix
   - mailutils
