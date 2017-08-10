@@ -5,8 +5,7 @@
     src: etc/ntp.conf
     dest: /etc/ntp.conf
     mode: 0644
-  notify:
-    - Restart NTP
+  notify: fabschurt.ubuntu.base.ntp_config_loaded
 
 - name: Upload Postfix config files
   tags: [config]
@@ -17,8 +16,7 @@
   with_items:
     - etc/mailname
     - etc/postfix/main.cf
-  notify:
-    - Restart Postfix
+  notify: fabschurt.ubuntu.base.postfix_config_loaded
 
 - name: Redirect postmaster and root e-mails to custom address
   tags: [config]
@@ -26,8 +24,7 @@
     src: etc/aliases
     dest: /etc/aliases
     mode: 0644
-  notify:
-    - Register new aliases
+  notify: fabschurt.ubuntu.base.aliases_added
 
 - name: Upload miscellaneous config files
   tags: [config]
@@ -54,5 +51,4 @@
     dest: /etc/locale.gen
     create: true
   with_items: '{{ ubuntu_base_needed_locales + ubuntu_base_additional_needed_locales }}'
-  notify:
-    - Generate locales
+  notify: fabschurt.ubuntu.base.locales_added
