@@ -1,33 +1,20 @@
 ---
-- name: Upload custom APT source list (with backports disabled)
-  tags: [packages]
-  template:
-    src: etc/apt/sources.list
-    dest: /etc/apt/sources.list
-    mode: 0644
+- name: Disable APT source packages
+  replace:
+    path: /etc/apt/sources.list
+    regexp: '^deb-src '
+    replace: '# deb-src '
 
 - name: Update package cache
-  tags: [packages]
   apt:
     update_cache: true
 
-- name: Remove unneeded packages
-  tags: [packages]
-  apt:
-    name: '{{ item }}'
-    state: absent
-    purge: true
-    autoremove: true
-  with_items: '{{ ubuntu_base_unneeded_packages + ubuntu_base_additional_unneeded_packages }}'
-
 - name: Upgrade all packages
-  tags: [packages, slow]
   apt:
-    upgrade: dist
+    upgrade: true
 
 - name: Install needed packages
-  tags: [packages]
   apt:
     name: '{{ item }}'
     state: latest
-  with_items: '{{ ubuntu_base_needed_packages + ubuntu_base_additional_needed_packages }}'
+  with_items: '{{ static.installed_packages + installed_packages }}'

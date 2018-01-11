@@ -3,9 +3,8 @@ galaxy_info:
   author: Fabien Schurter
   description: 'A minimal Ubuntu base system.'
   license: MIT
-  min_ansible_version: 2.1
+  min_ansible_version: 2.4
   platforms:
     - name: Ubuntu
-      versions: [xenial]
-  galaxy_tags: [ubuntu, base, common, bootstrap, system, tweaks]
-dependencies: []
+      versions:
+        - all

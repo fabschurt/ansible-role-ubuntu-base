@@ -6,9 +6,8 @@ language: python
 python: 2.7_with_system_site_packages
 
 env:
-  - ANSIBLE_VERSION=2.1.0
-  - ANSIBLE_VERSION=2.2.0
-  - ANSIBLE_VERSION=2.3.0
+  - ANSIBLE_VERSION=2.4.0
+  - ANSIBLE_VERSION=2.5.0
 
 install:
   - pip install --upgrade pip
@@ -16,4 +15,4 @@ install:
   - ansible --version
 
 script:
-  - ansible-playbook --skip-tags=slow tests/playbook.yml
+  - ansible-playbook --check tests/playbook.yml

@@ -1,12 +1,6 @@
 ---
-- name: Restart NTP
-  listen: fabschurt.ubuntu.base.ntp_config_loaded
-  service:
-    name: ntp
-    state: restarted
-
 - name: Restart Postfix
-  listen: fabschurt.ubuntu.base.postfix_config_loaded
+  listen: fabschurt.ubuntu.base.postfix_config_added
   service:
     name: postfix
     state: restarted
@@ -20,4 +14,4 @@
   locale_gen:
     name: '{{ item }}'
     state: present
-  with_items: '{{ ubuntu_base_needed_locales }}'
+  with_items: '{{ static.installed_locales + installed_locales }}'

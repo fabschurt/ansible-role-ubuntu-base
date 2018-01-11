@@ -1,6 +1,4 @@
 ---
-ubuntu_base_deb_repo_domain: fr.archive.ubuntu.com
-ubuntu_base_additional_needed_packages: []
-ubuntu_base_additional_unneeded_packages: []
-ubuntu_base_additional_needed_locales: []
-ubuntu_base_postmaster_redirect_address: dev@null.net
+postmaster_redirect_address: root@localhost
+installed_packages: []
+installed_locales: []
