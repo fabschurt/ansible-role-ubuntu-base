@@ -1,58 +1,62 @@
 ---
-- name: Upload NTP config file
-  tags: [config]
-  template:
-    src: etc/ntp.conf
-    dest: /etc/ntp.conf
-    mode: 0644
-  notify:
-    - Restart NTP
+- name: Don’t delete a group if there are still users in it
+  lineinfile:
+    path: /etc/deluser.conf
+    regexp: '^ONLY_IF_EMPTY ='
+    line: 'ONLY_IF_EMPTY = 1'
+    state: present
 
-- name: Upload Postfix config files
-  tags: [config]
-  template:
-    src: '{{ item }}'
-    dest: '/{{ item }}'
-    mode: 0644
-  with_items:
-    - etc/mailname
-    - etc/postfix/main.cf
-  notify:
-    - Restart Postfix
+- name: Enable SSH client agent forwarding
+  lineinfile:
+    path: /etc/ssh/ssh_config
+    regexp: '^#?\s*ForwardAgent '
+    line: '    ForwardAgent yes'
+    state: present
 
-- name: Redirect postmaster and root e-mails to custom address
-  tags: [config]
-  template:
-    src: etc/aliases
-    dest: /etc/aliases
-    mode: 0644
-  notify:
-    - Register new aliases
-
-- name: Upload miscellaneous config files
-  tags: [config]
-  copy:
-    src: '{{ item }}'
-    dest: '/{{ item }}'
-    mode: 0644
-  with_items:
-    - etc/ssh/
-    - etc/pam.d/
-    - etc/profile
-    - etc/bash.bashrc
-    - etc/login.defs
-    - etc/adduser.conf
-    - etc/deluser.conf
+- name: Disable SSH client roaming
+  lineinfile:
+    path: /etc/ssh/ssh_config
+    regexp: '^#?\s*UseRoaming '
+    line: '    UseRoaming no'
+    state: present
 
 - name: Register needed locales
-  tags: [config]
   lineinfile:
-    regexp: '^#\s*{{ item|regex_escape }}(\s+[A-Za-z\d\-]+)?$'
-    backrefs: true
+    path: /etc/locale.gen
+    regexp: '^(?:# )?{{ item|regex_escape }}( .+)?'
     line: '{{ item }}\1'
+    backrefs: true
     state: present
-    dest: /etc/locale.gen
+  with_items: '{{ static.installed_locales + installed_locales }}'
+  notify: fabschurt.ubuntu.base.locales_added
+
+- name: Define mailer’s host name
+  lineinfile:
+    path: /etc/mailname
+    line: '{{ ansible_fqdn }}'
+    state: present
     create: true
-  with_items: '{{ ubuntu_base_needed_locales + ubuntu_base_additional_needed_locales }}'
-  notify:
-    - Generate locales
+
+- name: Tweak Postfix’s config to make it a send-only relay
+  lineinfile:
+    path: /etc/postfix/main.cf
+    regexp: '{{ item.regexp }}'
+    line: '{{ item.line }}'
+    backrefs: true
+    state: present
+  with_items:
+    - { regexp: '^#?myorigin =', line: 'myorigin = /etc/mailname' }
+    - { regexp: '^#?myhostname =', line: 'myhostname = {{ ansible_fqdn }}' }
+    - { regexp: '^#?mydestination =(.*)', line: '#mydestination =\1' }
+    - { regexp: '^#?relayhost =(.*)', line: '#relayhost =\1' }
+    - { regexp: '^#?inet_interfaces =', line: 'inet_interfaces = loopback-only' }
+    - { regexp: '^#?relay_transport =', line: 'relay_transport = $default_transport' }
+  notify: fabschurt.ubuntu.base.postfix_config_added
+
+- name: Redirect postmaster and root e-mails to custom address
+  lineinfile:
+    path: /etc/aliases
+    regexp: '^root:'
+    line: 'root: {{ postmaster_redirect_address }}'
+    state: present
+  notify: fabschurt.ubuntu.base.aliases_added

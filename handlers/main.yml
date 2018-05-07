@@ -1,19 +1,17 @@
 ---
-- name: Restart NTP
-  service:
-    name: ntp
-    state: restarted
-
 - name: Restart Postfix
+  listen: fabschurt.ubuntu.base.postfix_config_added
   service:
     name: postfix
     state: restarted
 
 - name: Register new aliases
-  shell: 'newaliases'
+  listen: fabschurt.ubuntu.base.aliases_added
+  shell: newaliases
 
 - name: Generate locales
+  listen: fabschurt.ubuntu.base.locales_added
   locale_gen:
     name: '{{ item }}'
     state: present
-  with_items: '{{ ubuntu_base_needed_locales }}'
+  with_items: '{{ static.installed_locales + installed_locales }}'
