@@ -45,12 +45,24 @@
     backrefs: true
     state: present
   with_items:
-    - { regexp: '^#?myorigin =', line: 'myorigin = /etc/mailname' }
-    - { regexp: '^#?myhostname =', line: 'myhostname = {{ ansible_fqdn }}' }
-    - { regexp: '^#?mydestination =(.*)', line: '#mydestination =\1' }
-    - { regexp: '^#?relayhost =(.*)', line: '#relayhost =\1' }
-    - { regexp: '^#?inet_interfaces =', line: 'inet_interfaces = loopback-only' }
-    - { regexp: '^#?relay_transport =', line: 'relay_transport = $default_transport' }
+    -
+      regexp: '^#?myorigin ='
+      line: 'myorigin = /etc/mailname'
+    -
+      regexp: '^#?myhostname ='
+      line: 'myhostname = {{ ansible_fqdn }}'
+    -
+      regexp: '^#?mydestination =(.*)'
+      line: '#mydestination =\1'
+    -
+      regexp: '^#?relayhost =(.*)'
+      line: '#relayhost =\1'
+    -
+      regexp: '^#?inet_interfaces ='
+      line: 'inet_interfaces = loopback-only'
+    -
+      regexp: '^#?relay_transport ='
+      line: 'relay_transport = $default_transport'
   notify: fabschurt.ubuntu.base.postfix_config_added
 
 - name: Redirect postmaster and root e-mails to custom address
