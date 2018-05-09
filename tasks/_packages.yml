@@ -1,5 +1,5 @@
 ---
-- name: Disable APT source packages
+- name: Disable APT src repos
   replace:
     path: /etc/apt/sources.list
     regexp: '^deb-src '
