@@ -21,8 +21,8 @@
     state: present
   with_items:
     -
-      regexp: '^(?://)?\s*"\$\{distro_id\}:\$\{distro_codename\}-updates";'
-      line: '       "${distro_id}:${distro_codename}-updates";'
+      regexp: '^(?://)?\s+"\$\{distro_id\}:\$\{distro_codename\}-updates";'
+      line: '  "${distro_id}:${distro_codename}-updates";'
     -
       regexp: '^(?://)?Unattended-Upgrade::MinimalSteps '
       line: 'Unattended-Upgrade::MinimalSteps "true";'
@@ -46,15 +46,13 @@
 - name: Enable SSH client agent forwarding
   lineinfile:
     path: /etc/ssh/ssh_config
-    regexp: '^#?\s*ForwardAgent '
-    line: '    ForwardAgent yes'
+    line: 'ForwardAgent yes'
     state: present
 
 - name: Disable SSH client roaming
   lineinfile:
     path: /etc/ssh/ssh_config
-    regexp: '^#?\s*UseRoaming '
-    line: '    UseRoaming no'
+    line: 'UseRoaming no'
     state: present
 
 - name: Register needed locales
