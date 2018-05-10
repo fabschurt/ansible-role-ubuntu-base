@@ -1,4 +1,41 @@
 ---
+- name: Automatically update/clean APT’s package cache
+  lineinfile:
+    path: /etc/apt/apt.conf.d/10periodic
+    regexp: '{{ item.regexp }}'
+    line: '{{ item.line }}'
+    state: present
+  with_items:
+    -
+      regexp: '^APT::Periodic::Download-Upgradeable-Packages '
+      line: 'APT::Periodic::Download-Upgradeable-Packages "1";'
+    -
+      regexp: '^APT::Periodic::AutocleanInterval '
+      line: 'APT::Periodic::AutocleanInterval "7";'
+
+- name: Tweak APT’s unattended upgrades
+  lineinfile:
+    path: /etc/apt/apt.conf.d/50unattended-upgrades
+    regexp: '{{ item.regexp }}'
+    line: '{{ item.line }}'
+    state: present
+  with_items:
+    -
+      regexp: '^(?://)?\s+"\$\{distro_id\}:\$\{distro_codename\}-updates";'
+      line: '  "${distro_id}:${distro_codename}-updates";'
+    -
+      regexp: '^(?://)?Unattended-Upgrade::MinimalSteps '
+      line: 'Unattended-Upgrade::MinimalSteps "true";'
+    -
+      regexp: '^(?://)?Unattended-Upgrade::Mail '
+      line: 'Unattended-Upgrade::Mail "{{ postmaster_redirect_address }}";'
+    -
+      regexp: '^(?://)?Unattended-Upgrade::Remove-Unused-Kernel-Packages '
+      line: 'Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";'
+    -
+      regexp: '^(?://)?Unattended-Upgrade::Remove-Unused-Dependencies '
+      line: 'Unattended-Upgrade::Remove-Unused-Dependencies "true";'
+
 - name: Don’t delete a group if there are still users in it
   lineinfile:
     path: /etc/deluser.conf
@@ -9,15 +46,13 @@
 - name: Enable SSH client agent forwarding
   lineinfile:
     path: /etc/ssh/ssh_config
-    regexp: '^#?\s*ForwardAgent '
-    line: '    ForwardAgent yes'
+    line: 'ForwardAgent yes'
     state: present
 
 - name: Disable SSH client roaming
   lineinfile:
     path: /etc/ssh/ssh_config
-    regexp: '^#?\s*UseRoaming '
-    line: '    UseRoaming no'
+    line: 'UseRoaming no'
     state: present
 
 - name: Register needed locales
@@ -45,12 +80,24 @@
     backrefs: true
     state: present
   with_items:
-    - { regexp: '^#?myorigin =', line: 'myorigin = /etc/mailname' }
-    - { regexp: '^#?myhostname =', line: 'myhostname = {{ ansible_fqdn }}' }
-    - { regexp: '^#?mydestination =(.*)', line: '#mydestination =\1' }
-    - { regexp: '^#?relayhost =(.*)', line: '#relayhost =\1' }
-    - { regexp: '^#?inet_interfaces =', line: 'inet_interfaces = loopback-only' }
-    - { regexp: '^#?relay_transport =', line: 'relay_transport = $default_transport' }
+    -
+      regexp: '^#?myorigin ='
+      line: 'myorigin = /etc/mailname'
+    -
+      regexp: '^#?myhostname ='
+      line: 'myhostname = {{ ansible_fqdn }}'
+    -
+      regexp: '^#?mydestination =(.*)'
+      line: '#mydestination =\1'
+    -
+      regexp: '^#?relayhost =(.*)'
+      line: '#relayhost =\1'
+    -
+      regexp: '^#?inet_interfaces ='
+      line: 'inet_interfaces = loopback-only'
+    -
+      regexp: '^#?relay_transport ='
+      line: 'relay_transport = $default_transport'
   notify: fabschurt.ubuntu.base.postfix_config_added
 
 - name: Redirect postmaster and root e-mails to custom address
