@@ -1,5 +1,5 @@
 ---
-- name: Automatically update/clean APT’s package cache
+- name: Automatically update/clean APT package cache
   lineinfile:
     path: /etc/apt/apt.conf.d/10periodic
     regexp: '{{ item.regexp }}'
@@ -13,7 +13,7 @@
       regexp: '^APT::Periodic::AutocleanInterval '
       line: 'APT::Periodic::AutocleanInterval "7";'
 
-- name: Tweak APT’s unattended upgrades
+- name: Tweak APT unattended upgrades
   lineinfile:
     path: /etc/apt/apt.conf.d/50unattended-upgrades
     regexp: '{{ item.regexp }}'
@@ -65,14 +65,14 @@
   with_items: '{{ static.installed_locales + installed_locales }}'
   notify: fabschurt.ubuntu.base.locales_added
 
-- name: Define mailer’s host name
+- name: Define mailer host name
   lineinfile:
     path: /etc/mailname
     line: '{{ ansible_fqdn }}'
     state: present
     create: true
 
-- name: Tweak Postfix’s config to make it a send-only relay
+- name: Tweak Postfix config to make it a send-only relay
   lineinfile:
     path: /etc/postfix/main.cf
     regexp: '{{ item.regexp }}'
