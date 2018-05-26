@@ -10,10 +10,9 @@ env:
   - ANSIBLE_VERSION=2.5.0
 
 install:
-  - sudo .travis/bin/bootstrap
   - pip install --upgrade pip
   - pip install ansible~="$ANSIBLE_VERSION"
   - ansible --version
 
 script:
-  - ansible-playbook --check tests/playbook.yml
+  - ansible-playbook --syntax-check tests/playbook.yml

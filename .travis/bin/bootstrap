@@ -1,8 +1,0 @@
-#!/bin/bash
-
-set -Eeux -o pipefail
-
-touch /etc/aliases
-touch /etc/locale.gen
-mkdir /etc/postfix
-touch /etc/postfix/main.cf
