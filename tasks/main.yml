@@ -1,8 +1,8 @@
 ---
-- import_tasks: _packages.yml
+- import_tasks: packages.yml
   tags:
     - packages
 
-- import_tasks: _config.yml
+- import_tasks: config.yml
   tags:
     - config
