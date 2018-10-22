@@ -1,9 +1,14 @@
 ---
-- name: Disable APT src repos
+- name: Disable `src` repositories
   replace:
     path: /etc/apt/sources.list
     regexp: '^deb-src '
     replace: '# deb-src '
+
+- name: Make sure the `universe` repository is enabled
+  apt_repository:
+    repo: 'deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release|lower }} universe'
+    state: present
 
 - name: Update package cache
   apt:
@@ -16,6 +21,5 @@
 
 - name: Install needed packages
   apt:
-    name: '{{ item }}'
+    name: '{{ static.installed_packages + installed_packages }}'
     state: latest
-  with_items: '{{ static.installed_packages + installed_packages }}'
