@@ -66,7 +66,7 @@ already. The variable values used here reflect the default values declared in
 ```yaml
 - hosts: …
   roles:
-    - role: fabschurt.ubuntu-base
+    - role: fabschurt.ubuntu_base
       installed_packages: [] # Will be merged with `static.installed_packages`
       installed_locales: [] # Will be merged with `static.installed_locales`
       postmaster_redirect_address: root@localhost # You should really override this one
