@@ -1,11 +1,11 @@
 ---
-- name: Disable `src` repositories
+- name: Disable «src» repositories
   replace:
     path: /etc/apt/sources.list
     regexp: '^deb-src '
     replace: '# deb-src '
 
-- name: Make sure the `universe` repository is enabled
+- name: Make sure the «universe» repository is enabled
   apt_repository:
     repo: 'deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release|lower }} universe'
     state: present

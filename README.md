@@ -42,6 +42,8 @@ by default:
 ```yaml
 static:
   installed_packages:
+    - bash
+    - sudo
     - openssh-server
     - ntp
     - mailutils
