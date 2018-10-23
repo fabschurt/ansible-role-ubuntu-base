@@ -5,10 +5,19 @@
     regexp: '^deb-src '
     replace: '# deb-src '
 
-- name: Make sure the «universe» repository is enabled
+- name: Make sure non-core repositories are enabled
   apt_repository:
-    repo: 'deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release|lower }} universe'
+    repo: 'deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release|lower ~ item[1] }} {{ item[0] }}'
     state: present
+  with_nested:
+    -
+      - universe
+      - restricted
+      - multiverse
+    -
+      - ''
+      - '-security'
+      - '-updates'
 
 - name: Update package cache
   apt:

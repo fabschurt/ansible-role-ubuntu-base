@@ -12,6 +12,5 @@
 - name: Generate locales
   listen: fabschurt.ubuntu.base.locales_added
   locale_gen:
-    name: '{{ item }}'
+    name: '{{ static.installed_locales + installed_locales }}'
     state: present
-  with_items: '{{ static.installed_locales + installed_locales }}'
