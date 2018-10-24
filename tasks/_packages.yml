@@ -1,10 +1,4 @@
 ---
-- name: Disable «src» repositories
-  replace:
-    path: /etc/apt/sources.list
-    regexp: '^deb-src '
-    replace: '# deb-src '
-
 - name: Make sure non-core repositories are enabled
   apt_repository:
     repo: 'deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release|lower ~ item[1] }} {{ item[0] }}'
