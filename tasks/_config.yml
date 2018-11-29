@@ -55,14 +55,14 @@
     line: 'UseRoaming no'
     state: present
 
-- name: Register needed locales
+- name: Register locales
   lineinfile:
     path: /etc/locale.gen
     regexp: '^(?:# )?{{ item|regex_escape }}( .+)?'
     line: '{{ item }}\1'
     backrefs: true
     state: present
-  with_items: '{{ static.installed_locales + installed_locales }}'
+  with_items: '{{ installed_locales }}'
   notify: fabschurt.ubuntu.base.locales_added
 
 - name: Define mailer host name

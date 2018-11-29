@@ -10,7 +10,6 @@ any recent Ubuntu flavor.
 
 Here’s a (non-exhaustive) list of the changes that it will implement:
 
-* `src` repos will be disabled in APT sources
 * package cache will be updated and all packages upgraded
 * some very vital packages will be installed
 * some locales will be activated/generated
@@ -26,8 +25,6 @@ Here’s a (non-exhaustive) list of the changes that it will implement:
 
 This role is configurable with the following variables:
 
-* `installed_packages`: a collection of packages that must be installed on the
-  system
 * `installed_locales`: a collection of locales that must be installed on the
   system
 * `postmaster_redirect_address`: an e-mail address where *postmaster*/*root*
@@ -35,26 +32,6 @@ This role is configurable with the following variables:
 
 See the [Example playbook](#example-playbook) section below for a reference of
 these variables’ default values.
-
-The `vars/default.yml` file declare some packages and locales to be installed
-by default:
-
-```yaml
-static:
-  installed_packages:
-    - bash
-    - sudo
-    - openssh-server
-    - ntp
-    - mailutils
-    - bash
-    - bash-completion
-    - vim
-  installed_locales:
-    - en_US.UTF-8
-    - en_IE.UTF-8
-    - fr_FR.UTF-8
-```
 
 ## Example playbook
 
@@ -67,9 +44,10 @@ it already. The variable values used here reflect the default values declared in
 - hosts: …
   roles:
     - role: fabschurt.ubuntu_base
-      installed_packages: [] # Will be merged with `static.installed_packages`
-      installed_locales: [] # Will be merged with `static.installed_locales`
-      postmaster_redirect_address: root@localhost # You should really override this one
+      installed_locales:
+        - en_US.UTF-8
+        - en_IE.UTF-8
+      postmaster_redirect_address: root@localhost # You should really override this variable
 ```
 
 ## License
