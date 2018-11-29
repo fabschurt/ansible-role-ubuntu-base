@@ -14,4 +14,4 @@
   locale_gen:
     name: '{{ item }}'
     state: present
-  with_items: '{{ static.installed_locales + installed_locales }}'
+  with_items: '{{ installed_locales }}'
