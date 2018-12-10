@@ -1,4 +1,4 @@
-# Ansible :: Ubuntu base system
+# Ansible Ubuntu Base
 
 [![Travis CI](https://img.shields.io/travis/fabschurt/ansible-role-ubuntu-base/master.svg)](https://travis-ci.org/fabschurt/ansible-role-ubuntu-base)
 
@@ -7,6 +7,7 @@ system.
 
 Here’s a (non-exhaustive) list of the changes that it will implement:
 
+* *src* and *backport* APT repositories will be disabled
 * package cache will be updated and all packages upgraded
 * some very vital packages will be installed
 * some locales will be activated/generated
