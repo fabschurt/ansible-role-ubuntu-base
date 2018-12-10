@@ -27,9 +27,12 @@
     name:
       - bash
       - sudo
+      - locales
       - openssh-server
       - ntp
       - mailutils
+      - update-notifier-common
+      - unattended-upgrades
       - bash
       - bash-completion
       - vim

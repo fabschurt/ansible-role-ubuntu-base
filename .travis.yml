@@ -1,9 +1,14 @@
 ---
-dist: trusty
-sudo: required
-
+dist: xenial
 language: python
 python: '2.7'
+
+services:
+  - docker
+
+addons:
+  apt:
+    update: true
 
 env:
   - ANSIBLE_VERSION=2.4.0
@@ -12,9 +17,14 @@ env:
   - ANSIBLE_VERSION=2.7.0
 
 install:
+  - sudo apt-get install -y sshpass
+  - docker pull fabschurt/ubuntu-ansible
   - pip install --upgrade pip
   - pip install ansible~="$ANSIBLE_VERSION"
   - ansible --version
 
+before_script:
+  - docker run --rm -d -p 2424:22 fabschurt/ubuntu-ansible
+
 script:
-  - ansible-playbook --syntax-check tests/playbook.yml
+  - ansible-playbook -i tests/hosts tests/playbook.yml
