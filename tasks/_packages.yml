@@ -1,17 +1,15 @@
 ---
-- name: Make sure non-core repositories are enabled
-  apt_repository:
-    repo: 'deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release|lower ~ item[1] }} {{ item[0] }}'
-    state: present
-  with_nested:
-    -
-      - universe
-      - restricted
-      - multiverse
-    -
-      - ''
-      - '-security'
-      - '-updates'
+- name: Disable «src» repositories
+  replace:
+    path: /etc/apt/sources.list
+    regexp: '^deb-src '
+    replace: '# deb-src '
+
+- name: Disable backports
+  replace:
+    path: /etc/apt/sources.list
+    regexp: '^deb (.+ {{ ansible_distribution_release|lower }}-backports) '
+    replace: '# deb \1 '
 
 - name: Update package cache
   apt:
