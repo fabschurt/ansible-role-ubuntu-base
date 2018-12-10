@@ -1,0 +1,1 @@
+127.0.0.1 ansible_port=2424 ansible_user=ansible ansible_ssh_pass=test ansible_become=true ansible_become_pass=test ansible_ssh_common_args='-o StrictHostKeyChecking=no'

@@ -5,9 +5,6 @@
 This is a very simple Ansible role that can be used to set up a bare Ubuntu
 system.
 
-This role is targeted at **Ubuntu LTS 18.04**, but I guess it should work with
-any recent Ubuntu flavor.
-
 Here’s a (non-exhaustive) list of the changes that it will implement:
 
 * package cache will be updated and all packages upgraded
