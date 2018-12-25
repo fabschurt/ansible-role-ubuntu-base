@@ -19,10 +19,11 @@
     regexp: '{{ item.regexp }}'
     line: '{{ item.line }}'
     state: present
+    backrefs: true
   with_items:
     -
-      regexp: '^(?://)?\s+"\$\{distro_id\}:\$\{distro_codename\}-updates";'
-      line: '  "${distro_id}:${distro_codename}-updates";'
+      regexp: '^(?://)?(\s+)"\$\{distro_id\}:\$\{distro_codename\}-updates";'
+      line: '\1"${distro_id}:${distro_codename}-updates";'
     -
       regexp: '^(?://)?Unattended-Upgrade::MinimalSteps '
       line: 'Unattended-Upgrade::MinimalSteps "true";'
