@@ -1,4 +1,4 @@
-# Ansible :: Ubuntu Base
+# Ansible Ubuntu Base
 
 [![Travis CI](https://img.shields.io/travis/fabschurt/ansible-role-ubuntu-base/master.svg)](https://travis-ci.org/fabschurt/ansible-role-ubuntu-base)
 
