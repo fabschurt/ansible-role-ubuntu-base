@@ -1,16 +1,16 @@
 ---
 - name: Restart Postfix
-  listen: fabschurt.ubuntu.base.postfix_config_added
+  listen: postfix_config_added
   service:
     name: postfix
     state: restarted
 
 - name: Register new aliases
-  listen: fabschurt.ubuntu.base.aliases_added
+  listen: aliases_added
   shell: newaliases
 
 - name: Generate locales
-  listen: fabschurt.ubuntu.base.locales_added
+  listen: locales_added
   locale_gen:
     name: '{{ item }}'
     state: present

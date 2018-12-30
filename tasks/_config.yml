@@ -64,7 +64,7 @@
     backrefs: true
     state: present
   with_items: '{{ installed_locales }}'
-  notify: fabschurt.ubuntu.base.locales_added
+  notify: locales_added
 
 - name: Define mailer host name
   lineinfile:
@@ -99,7 +99,7 @@
     -
       regexp: '^#?relay_transport ='
       line: 'relay_transport = $default_transport'
-  notify: fabschurt.ubuntu.base.postfix_config_added
+  notify: postfix_config_added
 
 - name: Redirect postmaster and root e-mails to custom address
   lineinfile:
@@ -107,4 +107,4 @@
     regexp: '^root:'
     line: 'root: {{ postmaster_redirect_address }}'
     state: present
-  notify: fabschurt.ubuntu.base.aliases_added
+  notify: aliases_added
