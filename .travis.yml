@@ -14,4 +14,4 @@ install:
   - ansible --version
 
 script:
-  - ansible-playbook -i tests/hosts --syntax-check tests/playbook.yml
+  - ansible-playbook --syntax-check tests/playbook.yml
