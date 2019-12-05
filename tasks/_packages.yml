@@ -19,6 +19,7 @@
 - name: Upgrade all installed packages
   apt:
     upgrade: true
+  when: update_all_packages
 
 - name: Install required packages
   apt:
