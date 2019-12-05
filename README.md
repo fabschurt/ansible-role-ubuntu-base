@@ -27,6 +27,8 @@ This role is configurable with the following variables:
   system
 * `postmaster_redirect_address`: an e-mail address where *postmaster*/*root*
   e-mails will be redirected to
+* `update_all_packages`: allows disabling upgrading all packages - useful if
+  patching is something only done on a monthly cycle etc.
 
 See the [Example playbook](#example-playbook) section below for a reference of
 these variables’ default values.

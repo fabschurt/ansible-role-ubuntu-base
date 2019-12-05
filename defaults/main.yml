@@ -3,3 +3,4 @@ installed_locales:
   - en_US.UTF-8
   - en_IE.UTF-8
 postmaster_redirect_address: root@localhost
+update_all_packages: true
